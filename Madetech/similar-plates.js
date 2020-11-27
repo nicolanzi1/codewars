@@ -1,29 +1,17 @@
 function similarLicensePlates(plate1, plate2) {
-  const similar = {
-    0: 'O',
-    Q: 'O',
-    1: 'I',
-    T: 'I',
-    2: 'Z',
-    5: 'S',
-    8: 'B',
-  }
+  let similar = ['0', 'O', 'Q', '1', 'I', 'T', '2', 'Z', '5', 'S', '8', 'B']
+
+  let arr = plate1.concat(plate2).replace(/\s+/g, '').split('')
 
   let result = []
-  let arr2 = plate2.split('')
-  arr2.forEach((char, i) => {
-    for (let j in similar) {
-      if (char[i] === similar[j]) {
-        result.push(similar[j])
-      } else {
-        result.push(char[i])
+  arr.forEach((e1) =>
+    similar.forEach((e2) => {
+      if (e1 === e2) {
+        result.push(e1)
       }
-    }
-  })
-
-  return plate1.split('').every((char) => {
-    return result.includes(char) ? true : false
-  })
+    })
+  )
+  return result.length % 2 === 0 ? true : false
 }
 
 console.log(similarLicensePlates('ABC', 'DEF'), false)
